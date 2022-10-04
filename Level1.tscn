@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://world_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Steve.tscn" type="PackedScene" id=2]
+[ext_resource path="res://pass_through_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://ASSETS/background/set2_background.png" type="Texture" id=4]
+[ext_resource path="res://ASSETS/background/set2_tiles.png" type="Texture" id=5]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemy.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3044.5, 98.5 )
+
+[node name="Level1" type="Node2D"]
+
+[node name="Tiles One-Way" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+collision_layer = 2
+collision_mask = 25
+format = 1
+tile_data = PoolIntArray( -393207, 1, 0, -393206, 3, 0, -393205, 3, 0, -393204, 3, 0, -393203, 3, 0, -393202, 2, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327666, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -196599, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -65527, 3, 0, -65526, 3, 0, -65525, 3, 0, -65524, 3, 0, -65523, 3, 0, -65522, 3, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 262153, 3, 0, 262154, 3, 0, 262155, 3, 0, 262156, 3, 0, 262157, 3, 0, 262158, 3, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0 )
+
+[node name="Tiles Solid" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+collision_layer = 2
+collision_mask = 25
+format = 1
+tile_data = PoolIntArray( -589861, 0, 0, -524325, 0, 0, -524324, 0, 0, -458789, 0, 0, -458788, 0, 0, -393253, 0, 0, -393252, 0, 0, -327717, 0, 0, -327716, 0, 0, -262181, 0, 0, -262180, 0, 0, -196645, 0, 0, -196644, 0, 0, -131109, 0, 0, -131108, 0, 0, -65573, 0, 0, -65572, 0, 0, -37, 0, 0, -36, 0, 0, 65499, 0, 0, 65500, 0, 0, 131035, 0, 0, 131036, 0, 0, 196571, 0, 0, 196572, 0, 0, 262107, 0, 0, 262108, 0, 0, 196688, 2, 0, 327643, 0, 0, 327644, 0, 0, 262223, 2, 0, 262224, 2, 0, 393179, 0, 0, 393180, 0, 0, 327758, 2, 0, 327759, 2, 0, 458715, 0, 0, 458716, 0, 0, 393283, 2, 0, 393284, 2, 0, 393285, 2, 0, 393286, 2, 0, 393287, 2, 0, 393288, 2, 0, 393289, 2, 0, 393290, 2, 0, 393291, 2, 0, 393292, 2, 0, 393293, 2, 0, 524251, 0, 0, 524252, 0, 0, 524253, 2, 0, 524254, 2, 0, 524255, 2, 0, 524256, 2, 0, 524257, 2, 0, 524258, 2, 0, 524259, 2, 0, 524260, 2, 0, 524261, 2, 0, 524262, 2, 0, 524263, 2, 0, 524264, 2, 0, 524265, 2, 0, 524266, 2, 0, 524267, 2, 0, 524268, 2, 0, 524269, 2, 0, 524270, 2, 0, 524271, 2, 0, 524272, 2, 0, 524273, 2, 0, 524274, 2, 0, 524275, 2, 0, 524276, 2, 0, 524277, 2, 0, 524278, 2, 0, 524279, 2, 0, 524280, 3, 0, 524283, 1, 0, 524284, 2, 0, 524285, 2, 0, 524286, 2, 0, 524287, 2, 0, 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0, 458767, 2, 0, 458768, 2, 0, 458812, 2, 0, 458813, 2, 0, 458814, 2, 0, 458815, 2, 0, 458816, 2, 0, 458817, 2, 0, 458818, 2, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524304, 2, 0, 524305, 2, 0, 524306, 2, 0, 524340, 2, 0, 524341, 2, 0, 524342, 2, 0, 524343, 2, 0, 524344, 2, 0, 524345, 2, 0, 524346, 2, 0, 524347, 2, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589852, 2, 0, 589853, 2, 0, 589854, 2, 0, 589855, 2, 0, 589856, 2, 0, 589857, 2, 0, 589858, 2, 0, 589859, 2, 0, 589860, 2, 0, 589861, 2, 0, 589862, 2, 0, 589863, 2, 0, 589864, 2, 0, 589865, 2, 0, 589866, 2, 0, 589867, 2, 0, 589868, 2, 0, 589872, 2, 0, 589873, 2, 0, 589874, 2, 0, 589875, 2, 0 )
+
+[node name="Steve" parent="." instance=ExtResource( 2 )]
+position = Vector2( 480, 400 )
+collision_mask = 30
+
+[node name="Camera2D" type="Camera2D" parent="Steve"]
+current = true
+limit_left = -2240
+limit_top = -5000
+limit_right = 5806
+limit_bottom = 700
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.3
+drag_margin_right = 0.3
+editor_draw_limits = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Purple Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1280, 960 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Purple Sky"]
+position = Vector2( -1, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Far Blocks" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.631373, 0.443137, 0.905882, 1 )
+motion_scale = Vector2( 0.75, 0.75 )
+motion_offset = Vector2( 0, -750 )
+motion_mirroring = Vector2( 2560, 1920 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Far Blocks"]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Middle Blocks" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.796078, 0.666667, 1, 1 )
+motion_scale = Vector2( 0.45, 0.45 )
+motion_offset = Vector2( 0, -500 )
+motion_mirroring = Vector2( 1600, 1200 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Middle Blocks"]
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Nearby Blocks" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.741176, 0.607843, 0.788235, 1 )
+motion_scale = Vector2( 0.75, 0.75 )
+motion_mirroring = Vector2( 1120, 840 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Nearby Blocks"]
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Fallzone" type="Area2D" parent="."]
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fallzone"]
+position = Vector2( 3795.5, 806.5 )
+shape = SubResource( 1 )
+
+[node name="coin" parent="." instance=ExtResource( 6 )]
+position = Vector2( 832, 192 )
+
+[node name="coin2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 872, -464 )
+
+[node name="coin3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1272, -392 )
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="enemy" parent="enemies" instance=ExtResource( 8 )]
+position = Vector2( 107, 290 )
+detect_cliffs = false
+
+[node name="enemy2" parent="enemies" instance=ExtResource( 8 )]
+position = Vector2( 109, 286 )
+direction = 1
+
+[connection signal="body_entered" from="Fallzone" to="Steve" method="_on_Fallzone_body_entered"]
