@@ -1,0 +1,261 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://ASSETS/fonts/KiriFont.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ASSETS/UI/grey_button04.png" type="Texture" id=2]
+[ext_resource path="res://ASSETS/fonts/Sniglet-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://ASSETS/enemies/slimeBlue_blue.png" type="Texture" id=4]
+[ext_resource path="res://ASSETS/coin/gold_1.png" type="Texture" id=5]
+[ext_resource path="res://ASSETS/player/platformChar_idle.png" type="Texture" id=6]
+[ext_resource path="res://ASSETS/UI/grey_button13.png" type="Texture" id=7]
+[ext_resource path="res://ASSETS/UI/arrow-UP.png" type="Texture" id=8]
+[ext_resource path="res://= gold.gd" type="Script" id=9]
+[ext_resource path="res://PlayButton.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 2
+outline_color = Color( 0.890196, 0.670588, 0.247059, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.00784314, 0, 0.278431, 0.780392 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.0980392, 0.0666667, 0.337255, 1 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = 22.0
+margin_top = 58.0
+margin_right = 1010.0
+margin_bottom = 229.0
+custom_colors/font_color = Color( 0.0784314, 0.670588, 0.713726, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Godot Platformer Game"
+
+[node name="Left Panel" type="Panel" parent="."]
+margin_left = 10.0
+margin_top = 379.0
+margin_right = 376.0
+margin_bottom = 580.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="controls" type="Label" parent="Left Panel"]
+margin_left = 12.0
+margin_top = 13.0
+margin_right = 171.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0.890196, 0.670588, 0.247059, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Controls"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="space bar" type="TextureRect" parent="Left Panel"]
+margin_left = 63.0
+margin_top = 67.0
+margin_right = 188.0
+margin_bottom = 99.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="label" type="Label" parent="Left Panel/space bar"]
+margin_left = 7.0
+margin_top = -2.0
+margin_right = 119.0
+margin_bottom = 36.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "SPACE"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="= jump" type="Label" parent="Left Panel/space bar"]
+margin_left = 127.0
+margin_top = -3.0
+margin_right = 239.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 4 )
+text = "= JUMP!"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="= move" type="Label" parent="Left Panel"]
+margin_left = 190.0
+margin_top = 123.0
+margin_right = 302.0
+margin_bottom = 161.0
+custom_fonts/font = SubResource( 4 )
+text = "= move"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="left_key" type="TextureRect" parent="Left Panel"]
+margin_left = 86.0
+margin_top = 126.0
+margin_right = 119.0
+margin_bottom = 159.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="arrow" type="TextureRect" parent="Left Panel/left_key"]
+margin_left = 5.0
+margin_top = 28.0
+margin_right = 28.0
+margin_bottom = 51.0
+rect_rotation = -89.9999
+texture = ExtResource( 8 )
+expand = true
+
+[node name="right_key" type="TextureRect" parent="Left Panel"]
+margin_left = 132.0
+margin_top = 126.0
+margin_right = 165.0
+margin_bottom = 159.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="arrow" type="TextureRect" parent="Left Panel/right_key"]
+margin_left = 5.0
+margin_top = 28.0
+margin_right = 28.0
+margin_bottom = 51.0
+rect_rotation = -89.9999
+texture = ExtResource( 8 )
+expand = true
+flip_v = true
+
+[node name="Right Panel" type="Panel" parent="."]
+margin_left = 623.0
+margin_top = 377.0
+margin_right = 989.0
+margin_bottom = 578.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="items" type="Label" parent="Right Panel"]
+margin_left = 12.0
+margin_top = 13.0
+margin_right = 171.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0.890196, 0.670588, 0.247059, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "items"
+uppercase = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="= gold" type="Label" parent="Right Panel"]
+margin_left = 32.0
+margin_top = 131.0
+margin_right = 311.0
+margin_bottom = 169.0
+custom_fonts/font = SubResource( 4 )
+text = "Collect 50         to win"
+align = 1
+valign = 1
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="coin icon" type="TextureRect" parent="Right Panel"]
+margin_left = 183.0
+margin_top = 133.0
+margin_right = 214.0
+margin_bottom = 164.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="= enemy" type="Label" parent="Right Panel"]
+margin_left = 237.0
+margin_top = 61.0
+margin_right = 349.0
+margin_bottom = 99.0
+rect_pivot_offset = Vector2( 98, 100 )
+custom_fonts/font = SubResource( 4 )
+text = "= Enemy"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="enemy icon" type="TextureRect" parent="Right Panel"]
+margin_left = 196.0
+margin_top = 65.0
+margin_right = 227.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 122, 96 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="= you" type="Label" parent="Right Panel"]
+margin_left = 51.0
+margin_top = 64.0
+margin_right = 163.0
+margin_bottom = 102.0
+rect_pivot_offset = Vector2( 98, 100 )
+custom_fonts/font = SubResource( 4 )
+text = "= You"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="you icon" type="TextureRect" parent="Right Panel"]
+margin_left = 23.0
+margin_top = 52.0
+margin_right = 72.0
+margin_bottom = 101.0
+rect_pivot_offset = Vector2( 122, 96 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="PlayButton" type="Button" parent="."]
+margin_left = 393.0
+margin_top = 204.0
+margin_right = 603.0
+margin_bottom = 290.0
+custom_colors/font_color = Color( 0.0666667, 0.568627, 0.133333, 1 )
+custom_colors/font_color_hover = Color( 0.768627, 0.345098, 0.854902, 1 )
+custom_colors/font_color_pressed = Color( 0.976471, 0.12549, 0.12549, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "PLAY!"
+flat = true
+script = ExtResource( 10 )
+
+[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_PlayButton_pressed"]

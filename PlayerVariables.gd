@@ -1,6 +1,7 @@
 extends Node
 
 var coins = 0
+var target_coins = 3
 
 func add_coins(amount):
 	coins += amount
