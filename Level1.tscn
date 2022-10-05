@@ -28,24 +28,6 @@ collision_mask = 25
 format = 1
 tile_data = PoolIntArray( -589861, 0, 0, -524325, 0, 0, -524324, 0, 0, -458789, 0, 0, -458788, 0, 0, -393253, 0, 0, -393252, 0, 0, -327717, 0, 0, -327716, 0, 0, -262181, 0, 0, -262180, 0, 0, -196645, 0, 0, -196644, 0, 0, -131109, 0, 0, -131108, 0, 0, -65573, 0, 0, -65572, 0, 0, -37, 0, 0, -36, 0, 0, 65499, 0, 0, 65500, 0, 0, 131035, 0, 0, 131036, 0, 0, 196571, 0, 0, 196572, 0, 0, 262107, 0, 0, 262108, 0, 0, 196688, 2, 0, 327643, 0, 0, 327644, 0, 0, 262223, 2, 0, 262224, 2, 0, 393179, 0, 0, 393180, 0, 0, 327758, 2, 0, 327759, 2, 0, 458715, 0, 0, 458716, 0, 0, 393283, 2, 0, 393284, 2, 0, 393285, 2, 0, 393286, 2, 0, 393287, 2, 0, 393288, 2, 0, 393289, 2, 0, 393290, 2, 0, 393291, 2, 0, 393292, 2, 0, 393293, 2, 0, 524251, 0, 0, 524252, 0, 0, 524253, 2, 0, 524254, 2, 0, 524255, 2, 0, 524256, 2, 0, 524257, 2, 0, 524258, 2, 0, 524259, 2, 0, 524260, 2, 0, 524261, 2, 0, 524262, 2, 0, 524263, 2, 0, 524264, 2, 0, 524265, 2, 0, 524266, 2, 0, 524267, 2, 0, 524268, 2, 0, 524269, 2, 0, 524270, 2, 0, 524271, 2, 0, 524272, 2, 0, 524273, 2, 0, 524274, 2, 0, 524275, 2, 0, 524276, 2, 0, 524277, 2, 0, 524278, 2, 0, 524279, 2, 0, 524280, 3, 0, 524283, 1, 0, 524284, 2, 0, 524285, 2, 0, 524286, 2, 0, 524287, 2, 0, 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0, 458767, 2, 0, 458768, 2, 0, 458812, 2, 0, 458813, 2, 0, 458814, 2, 0, 458815, 2, 0, 458816, 2, 0, 458817, 2, 0, 458818, 2, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524304, 2, 0, 524305, 2, 0, 524306, 2, 0, 524340, 2, 0, 524341, 2, 0, 524342, 2, 0, 524343, 2, 0, 524344, 2, 0, 524345, 2, 0, 524346, 2, 0, 524347, 2, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589852, 2, 0, 589853, 2, 0, 589854, 2, 0, 589855, 2, 0, 589856, 2, 0, 589857, 2, 0, 589858, 2, 0, 589859, 2, 0, 589860, 2, 0, 589861, 2, 0, 589862, 2, 0, 589863, 2, 0, 589864, 2, 0, 589865, 2, 0, 589866, 2, 0, 589867, 2, 0, 589868, 2, 0, 589872, 2, 0, 589873, 2, 0, 589874, 2, 0, 589875, 2, 0 )
 
-[node name="Steve" parent="." instance=ExtResource( 2 )]
-position = Vector2( 480, 400 )
-collision_mask = 30
-
-[node name="Camera2D" type="Camera2D" parent="Steve"]
-current = true
-limit_left = -2240
-limit_top = -5000
-limit_right = 5806
-limit_bottom = 700
-limit_smoothed = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-drag_margin_left = 0.3
-drag_margin_right = 0.3
-editor_draw_limits = true
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Purple Sky" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -113,11 +95,46 @@ position = Vector2( 1272, -392 )
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="enemy" parent="enemies" instance=ExtResource( 8 )]
-position = Vector2( 107, 290 )
+position = Vector2( 224, 257 )
 detect_cliffs = false
 
 [node name="enemy2" parent="enemies" instance=ExtResource( 8 )]
-position = Vector2( 109, 286 )
+position = Vector2( 207, 316 )
 direction = 1
+
+[node name="enemy3" parent="enemies" instance=ExtResource( 8 )]
+position = Vector2( 743, -404 )
+direction = 1
+
+[node name="enemy4" parent="enemies" instance=ExtResource( 8 )]
+position = Vector2( 889, -90 )
+direction = 1
+
+[node name="enemy5" parent="enemies" instance=ExtResource( 8 )]
+position = Vector2( 713, 226 )
+direction = 1
+
+[node name="enemy6" parent="enemies" instance=ExtResource( 8 )]
+position = Vector2( 863, 70 )
+direction = 1
+detect_cliffs = false
+
+[node name="Steve" parent="." instance=ExtResource( 2 )]
+position = Vector2( 480, 400 )
+collision_mask = 30
+
+[node name="Camera2D" type="Camera2D" parent="Steve"]
+current = true
+limit_left = -2240
+limit_top = -5000
+limit_right = 5806
+limit_bottom = 700
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.3
+drag_margin_right = 0.3
+editor_draw_limits = true
 
 [connection signal="body_entered" from="Fallzone" to="Steve" method="_on_Fallzone_body_entered"]

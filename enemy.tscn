@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://enemy.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://enemy.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22.5, 14.5 )
+extents = Vector2( 21.5, 14 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 28, 10 )
 
 [node name="enemy" type="KinematicBody2D"]
 collision_layer = 16
@@ -19,10 +25,33 @@ frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.5, -0.5 )
+position = Vector2( 0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="floor_checker" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 20 )
 collision_mask = 2
+
+[node name="top_checker" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_checker"]
+position = Vector2( 0, -17.5 )
+shape = SubResource( 2 )
+
+[node name="sides_checker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sides_checker"]
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.611
+one_shot = true
+
+[connection signal="body_entered" from="top_checker" to="." method="_on_top_checker_body_entered"]
+[connection signal="body_entered" from="sides_checker" to="." method="_on_sides_checker_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
