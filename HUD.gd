@@ -10,5 +10,5 @@ func _physics_process(delta):
 	$coins.text = String(PlayerVariables.coins)
 	if PlayerVariables.coins == 3:
 		PlayerVariables.reset_coins()
-		get_tree().change_scene("res://Level1.tscn") 
+		get_tree().change_scene("res://YouWin.tscn") 
 		

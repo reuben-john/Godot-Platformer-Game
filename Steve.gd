@@ -55,5 +55,5 @@ func ouch(var enemy_posx):
 
 
 func _on_Timer_timeout():
-	get_tree().change_scene("res://Level1.tscn")
+	get_tree().change_scene("res://GameOver.tscn")
 	
