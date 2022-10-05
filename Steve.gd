@@ -32,7 +32,7 @@ func _physics_process(delta):
 
 
 func _on_Fallzone_body_entered(body):
-	pass
+	get_tree().change_scene("res://GameOver.tscn")
 
 
 func bounce():

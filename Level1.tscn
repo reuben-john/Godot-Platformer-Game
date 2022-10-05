@@ -10,7 +10,7 @@
 [ext_resource path="res://enemy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3044.5, 98.5 )
+extents = Vector2( 4904.5, 98.5 )
 
 [node name="Level1" type="Node2D"]
 
@@ -78,7 +78,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fallzone"]
-position = Vector2( 3795.5, 806.5 )
+position = Vector2( 1935.5, 806.5 )
 shape = SubResource( 1 )
 
 [node name="coin" parent="." instance=ExtResource( 6 )]
