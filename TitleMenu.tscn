@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ASSETS/fonts/KiriFont.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ASSETS/UI/grey_button04.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ASSETS/UI/arrow-UP.png" type="Texture" id=8]
 [ext_resource path="res://= gold.gd" type="Script" id=9]
 [ext_resource path="res://PlayButton.gd" type="Script" id=10]
+[ext_resource path="res://ASSETS/music/Swinging Pants.ogg" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -257,5 +258,10 @@ custom_fonts/font = SubResource( 5 )
 text = "PLAY!"
 flat = true
 script = ExtResource( 10 )
+
+[node name="MusicTitleScreen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -15.0
+autoplay = true
 
 [connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_PlayButton_pressed"]

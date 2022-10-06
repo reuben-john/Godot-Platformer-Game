@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://coin_spriteframe.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://coin.gd" type="Script" id=2]
+[ext_resource path="res://ASSETS/sounds/powerUp2.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.7922
@@ -54,6 +55,11 @@ playing = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/bounce = SubResource( 2 )
+
+[node name="SoundCoinCollect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+pitch_scale = 1.1
 
 [connection signal="body_entered" from="." to="." method="_on_coin_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

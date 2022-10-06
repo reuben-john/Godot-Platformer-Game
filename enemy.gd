@@ -37,6 +37,8 @@ func _on_top_checker_body_entered(body):
 	$sides_checker.set_collision_mask_bit(0, false)
 	$Timer.start()
 	body.bounce()
+	$SoundSquash.play()
+	
 	
 func _on_sides_checker_body_entered(body):
 	print("ouch")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://world_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Steve.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://coin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ASSETS/music/Retro Beat.ogg" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4904.5, 98.5 )
@@ -136,5 +137,10 @@ smoothing_enabled = true
 drag_margin_left = 0.3
 drag_margin_right = 0.3
 editor_draw_limits = true
+
+[node name="MusicLevel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -10.0
+autoplay = true
 
 [connection signal="body_entered" from="Fallzone" to="Steve" method="_on_Fallzone_body_entered"]
