@@ -8,6 +8,7 @@ const SPEED = 300
 const RUN_SPEED = SPEED * 1.7
 const GRAVITY = 35
 const JUMPFORCE = -900
+const FIREBALL = preload("res://Fireball.tscn")
 
 func _physics_process(delta):
 	match state:
@@ -20,11 +21,12 @@ func _physics_process(delta):
 				velocity.x = lerp(velocity.x, SPEED, 0.1) if velocity.x <  SPEED else lerp(velocity.x, SPEED, 0.03)
 				$Sprite.flip_h = false;
 			elif Input.is_action_pressed("left"):
-				velocity.x = lerp(velocity.x, -SPEED, 0.1) if velocity.x < SPEED else lerp(velocity.x, -SPEED, 0.03)
+				velocity.x = lerp(velocity.x, -SPEED, 0.1) if velocity.x > -SPEED else lerp(velocity.x, -SPEED, 0.03)
 				$Sprite.flip_h = true;
 			else:
 				velocity.x = lerp(velocity.x, 0, 0.2)
 			move_and_fall()
+			fire()
 		States.FLOOR:
 			if not is_on_floor():
 				state = States.AIR
@@ -56,7 +58,17 @@ func _physics_process(delta):
 				$SoundJump.play()
 				state = States.AIR
 			move_and_fall()
+			fire()
 	
+
+func fire():
+	if Input.is_action_just_pressed("fire"):
+		var direction = 1 if not $Sprite.flip_h else -1 
+		var f = FIREBALL.instance()
+		f.direction = direction
+		get_parent().add_child(f)
+		f.position.y = position.y
+		f.position.x = position.x + 25 * direction
 
 
 func move_and_fall():
