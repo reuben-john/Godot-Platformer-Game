@@ -4,12 +4,12 @@ enum States {AIR, FLOOR, LADDER, WALL}
 var state = States.AIR
 
 var velocity = Vector2(0, 0)
-const SPEED = 380
+const SPEED = 300
+const RUN_SPEED = SPEED * 1.7
 const GRAVITY = 35
 const JUMPFORCE = -900
 
 func _physics_process(delta):
-	
 	match state:
 		States.AIR:
 			if is_on_floor():
@@ -17,10 +17,10 @@ func _physics_process(delta):
 				continue
 			$Sprite.play("air")
 			if Input.is_action_pressed("right"):
-				velocity.x = SPEED
+				velocity.x = lerp(velocity.x, SPEED, 0.1) if velocity.x <  SPEED else lerp(velocity.x, SPEED, 0.03)
 				$Sprite.flip_h = false;
 			elif Input.is_action_pressed("left"):
-				velocity.x = -SPEED
+				velocity.x = lerp(velocity.x, -SPEED, 0.1) if velocity.x < SPEED else lerp(velocity.x, -SPEED, 0.03)
 				$Sprite.flip_h = true;
 			else:
 				velocity.x = lerp(velocity.x, 0, 0.2)
@@ -30,11 +30,21 @@ func _physics_process(delta):
 				state = States.AIR
 				continue
 			if Input.is_action_pressed("right"):
-				velocity.x = SPEED
+				if Input.is_action_pressed("run"):
+					$Sprite.set_speed_scale(1.9)
+					velocity.x = lerp(velocity.x, RUN_SPEED, 0.1)
+				else:
+					velocity.x = lerp(velocity.x, SPEED, 0.1)
+					$Sprite.set_speed_scale(1.0)
 				$Sprite.play("walk")
 				$Sprite.flip_h = false;
 			elif Input.is_action_pressed("left"):
-				velocity.x = -SPEED
+				if Input.is_action_pressed("run"):
+					$Sprite.set_speed_scale(1.9)
+					velocity.x = lerp(velocity.x, -RUN_SPEED, 0.1)
+				else:
+					velocity.x = lerp(velocity.x, -SPEED, 0.1)
+					$Sprite.set_speed_scale(1.0)
 				$Sprite.play("walk")
 				$Sprite.flip_h = true;
 			else:
