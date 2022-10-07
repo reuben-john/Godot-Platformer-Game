@@ -6,6 +6,7 @@ var state = States.AIR
 var velocity = Vector2(0, 0)
 var direction = 1
 var last_jump_direction = 1
+var on_ladder := false
 const SPEED = 300
 const RUN_SPEED = SPEED * 1.7
 const GRAVITY = 35
@@ -15,12 +16,15 @@ const FIREBALL = preload("res://Fireball.tscn")
 func _physics_process(delta):
 	match state:
 		States.AIR:
-			if is_on_floor():
+			if is_on_floor() and velocity.y == 0:
 				last_jump_direction = 0
 				state = States.FLOOR
 				continue
 			elif is_near_wall():
 				state = States.WALL
+				continue
+			elif should_climb_ladder():
+				state = States.LADDER
 				continue
 			$Sprite.play("air")
 			if Input.is_action_pressed("right"):
@@ -37,6 +41,9 @@ func _physics_process(delta):
 		States.FLOOR:
 			if not is_on_floor():
 				state = States.AIR
+				continue
+			elif should_climb_ladder():
+				state = States.LADDER
 				continue
 			if Input.is_action_pressed("right"):
 				if Input.is_action_pressed("run"):
@@ -75,6 +82,9 @@ func _physics_process(delta):
 			elif ! is_near_wall():
 				state = States.AIR
 				continue
+			elif should_climb_ladder():
+				state = States.LADDER
+				continue
 			$Sprite.play("wall")
 			
 			if direction != last_jump_direction and Input.is_action_pressed("jump") and (
@@ -84,8 +94,39 @@ func _physics_process(delta):
 				velocity.x = 450 * -direction
 				velocity.y = JUMPFORCE * 0.8
 				$SoundJump.play()
-			
 			move_and_fall(true)
+		States.LADDER:
+			if not on_ladder:
+				state = States.AIR
+				continue
+			elif is_on_floor() and Input.is_action_pressed("down") and velocity.y == 0:
+				state = States.FLOOR
+				Input.action_release("down")
+				Input.action_release("up")
+				continue
+			elif Input.is_action_just_pressed("jump"):
+				States.AIR				
+				Input.action_release("down")
+				Input.action_release("up")
+				velocity.y = JUMPFORCE * 0.7
+				continue
+			if Input.is_action_pressed("up") or Input.is_action_pressed("down") or Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+				$Sprite.play("climb")
+			else:
+				$Sprite.stop()
+			
+			if Input.is_action_pressed("up"):
+				velocity.y = -SPEED
+			elif Input.is_action_pressed("down"):
+				velocity.y = SPEED
+			else:
+				velocity.y = lerp(velocity.y, 0, 0.3)
+			
+			velocity = move_and_slide(velocity, Vector2.UP)
+				
+func should_climb_ladder() -> bool:
+	return on_ladder and ( Input.is_action_pressed("up") or Input.is_action_pressed("down") )
+
 
 func set_direction():
 	direction = 1 if not $Sprite.flip_h else -1
@@ -93,7 +134,7 @@ func set_direction():
 
 
 func is_near_wall():
-	return $WallChecker.is_colliding()
+	return $WallChecker.is_colliding() and not $WallChecker.get_collider().is_in_group("one_way")
 	
 
 func fire():
@@ -138,3 +179,11 @@ func ouch(var enemy_posx):
 func _on_Timer_timeout():
 	get_tree().change_scene("res://GameOver.tscn")
 	
+
+
+func _on_LadderChecker_body_entered(body):
+	on_ladder = true
+
+
+func _on_LadderChecker_body_exited(body):
+	on_ladder = false
