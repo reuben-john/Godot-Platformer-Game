@@ -7,6 +7,7 @@ var velocity = Vector2(0, 0)
 var direction = 1
 var last_jump_direction = 1
 var on_ladder := false
+var hurt := 0
 const SPEED = 300
 const RUN_SPEED = SPEED * 1.7
 const GRAVITY = 35
@@ -138,7 +139,7 @@ func is_near_wall():
 	
 
 func fire():
-	if Input.is_action_just_pressed("fire") and not is_near_wall():
+	if Input.is_action_just_pressed("fire") and not is_near_wall() and hurt == 0:
 		var f = FIREBALL.instance()
 		f.direction = direction
 		get_parent().add_child(f)
@@ -165,7 +166,6 @@ func bounce():
 
 func ouch(var enemy_posx):
 	PlayerVariables.lose_life()
-	set_modulate(Color(1, 0.3, 0.3, 0.3))
 	velocity.y = JUMPFORCE * 0.5
 	
 	if position.x < enemy_posx:
@@ -176,13 +176,20 @@ func ouch(var enemy_posx):
 	Input.action_release("left")
 	Input.action_release("right")
 	
+	set_modulate(Color(10, 10, 10, 0.9))
+	set_collision_layer_bit(0, false)
+	hurt = 20
 	$Timer.start()
 
 
 func _on_Timer_timeout():
-	set_modulate(Color(1, 1, 1, 1))
-	
-	
+	hurt -= 1
+	if hurt == 0:
+		$Timer.stop()
+		set_modulate(Color(1, 1, 1, 1))
+		set_collision_layer_bit(0, true)
+	else:
+		set_modulate(Color(10, 10, 10, 0.9) if hurt % 2 == 0 else Color(1, 0.3, 0.3, 0.7))
 
 
 func _on_LadderChecker_body_entered(body):
