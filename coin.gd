@@ -11,7 +11,6 @@ func _on_coin_body_entered(body):
 	$SoundCoinCollect.play()
 	
 	if PlayerVariables.coins == 3:
-		PlayerVariables.reset_coins()
 		get_tree().change_scene("res://YouWin.tscn") 
 		
 func _on_AnimationPlayer_animation_finished(anim_name):

@@ -154,7 +154,9 @@ func move_and_fall(slow_fall: bool):
 
 
 func _on_Fallzone_body_entered(body):
-	get_tree().change_scene("res://GameOver.tscn")
+	PlayerVariables.lose_life()
+	if PlayerVariables.lives >= 1:
+		get_tree().reload_current_scene()
 
 
 func bounce():
@@ -162,6 +164,7 @@ func bounce():
 
 
 func ouch(var enemy_posx):
+	PlayerVariables.lose_life()
 	set_modulate(Color(1, 0.3, 0.3, 0.3))
 	velocity.y = JUMPFORCE * 0.5
 	
@@ -177,7 +180,8 @@ func ouch(var enemy_posx):
 
 
 func _on_Timer_timeout():
-	get_tree().change_scene("res://GameOver.tscn")
+	set_modulate(Color(1, 1, 1, 1))
+	
 	
 
 
